@@ -32,7 +32,7 @@ fn main() {
 
     println!(
         "{} {} = {} {}",
-        temperature, input_scale, converted_temperature, output_scale
+        temperature, input_scale, two_decimal(converted_temperature), output_scale
     );
 }
 
@@ -59,4 +59,17 @@ fn kelvin_to_celsius(kelvin: f64) -> f64 {
 fn kelvin_to_fahrenheit(kelvin: f64) -> f64 {
     let celsius = kelvin_to_celsius(kelvin);
     celsius_to_fahrenheit(celsius)
+}
+
+fn two_decimal(value: f64) -> String {
+    let formatted = format!("{:.2}", value);
+    if formatted.ends_with(".00") {
+        formatted[..formatted.len() - 3].to_string()
+    } else {
+        let mut trimmed = formatted.trim_end_matches('0').to_string();
+        if trimmed.ends_with('.') {
+            trimmed.pop();
+        }
+        trimmed
+    }
 }
