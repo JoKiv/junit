@@ -8,11 +8,14 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     if args.len() != 4 {
-        eprintln!("{} v{} by {}", name, version, authors);
-        eprintln!(
-            "Usage: {} <temperature> <input_scale> <output_scale>",
-            args[0]
+        println!("{} v{} by {}", name, version, authors);
+        println!("Usage: {} <temperature> <input_scale> <output_scale>", name);
+        println!(
+            "       {} 0 c f  // will convert 0 Celcius to Fahrenheit",
+            name
         );
+        println!("Supported: c/f/k");
+
         std::process::exit(1);
     }
 
@@ -32,7 +35,10 @@ fn main() {
 
     println!(
         "{} {} = {} {}",
-        temperature, input_scale, two_decimal(converted_temperature), output_scale
+        temperature,
+        input_scale,
+        two_decimal(converted_temperature),
+        output_scale
     );
 }
 
