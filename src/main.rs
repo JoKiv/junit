@@ -9,11 +9,8 @@ fn main() {
 
     if args.len() != 4 {
         println!("{} v{} by {}", name, version, authors);
-        println!("Usage: {} <temperature> <input_unit> <output_unit>", name);
-        println!(
-            "       {} 0 c f  // will convert 0 Celcius to Fahrenheit",
-            name
-        );
+        println!("Usage:\t{} <temperature> <input_unit> <output_unit>", name);
+        println!("\t{} 0 c f  // will convert 0 Celcius to Fahrenheit", name);
         println!("Supported: c/f/k");
 
         std::process::exit(1);
@@ -33,7 +30,7 @@ fn main() {
         _ => {
             eprintln!("Error: Invalid input/output scale combination");
             std::process::exit(1);
-        },
+        }
     };
 
     println!(
