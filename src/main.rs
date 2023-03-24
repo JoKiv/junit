@@ -63,8 +63,7 @@ fn kelvin_to_celsius(kelvin: f64) -> f64 {
 }
 
 fn kelvin_to_fahrenheit(kelvin: f64) -> f64 {
-    let celsius = kelvin_to_celsius(kelvin);
-    celsius_to_fahrenheit(celsius)
+    kelvin * 9.0 / 5.0 - 459.67
 }
 
 fn two_decimal(value: f64) -> String {
