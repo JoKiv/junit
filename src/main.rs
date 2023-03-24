@@ -9,7 +9,7 @@ fn main() {
 
     if args.len() != 4 {
         println!("{} v{} by {}", name, version, authors);
-        println!("Usage: {} <temperature> <input_scale> <output_scale>", name);
+        println!("Usage: {} <temperature> <input_unit> <output_unit>", name);
         println!(
             "       {} 0 c f  // will convert 0 Celcius to Fahrenheit",
             name
@@ -19,17 +19,17 @@ fn main() {
         std::process::exit(1);
     }
 
-    let temperature: f64 = args[1].parse().expect("Invalid temperature argument");
-    let input_scale = &args[2].to_lowercase();
-    let output_scale = &args[3].to_lowercase();
+    let in_value: f64 = args[1].parse().expect("Invalid temperature argument");
+    let input_units = &args[2].to_lowercase();
+    let output_units = &args[3].to_lowercase();
 
-    let converted_temperature = match (input_scale.as_str(), output_scale.as_str()) {
-        ("c", "f") => celsius_to_fahrenheit(temperature),
-        ("f", "c") => fahrenheit_to_celsius(temperature),
-        ("c", "k") => celsius_to_kelvin(temperature),
-        ("f", "k") => fahrenheit_to_kelvin(temperature),
-        ("k", "c") => kelvin_to_celsius(temperature),
-        ("k", "f") => kelvin_to_fahrenheit(temperature),
+    let converted_value = match (input_units.as_str(), output_units.as_str()) {
+        ("c", "f") => celsius_to_fahrenheit(in_value),
+        ("f", "c") => fahrenheit_to_celsius(in_value),
+        ("c", "k") => celsius_to_kelvin(in_value),
+        ("f", "k") => fahrenheit_to_kelvin(in_value),
+        ("k", "c") => kelvin_to_celsius(in_value),
+        ("k", "f") => kelvin_to_fahrenheit(in_value),
         _ => {
             eprintln!("Error: Invalid input/output scale combination");
             std::process::exit(1);
@@ -38,10 +38,10 @@ fn main() {
 
     println!(
         "{} {} = {} {}",
-        temperature,
-        input_scale.to_uppercase(),
-        two_decimal(converted_temperature),
-        output_scale.to_uppercase()
+        in_value,
+        input_units.to_uppercase(),
+        two_decimal(converted_value),
+        output_units.to_uppercase()
     );
 }
 
