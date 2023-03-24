@@ -30,7 +30,10 @@ fn main() {
         ("f", "k") => fahrenheit_to_kelvin(temperature),
         ("k", "c") => kelvin_to_celsius(temperature),
         ("k", "f") => kelvin_to_fahrenheit(temperature),
-        _ => panic!("Invalid input/output scale combination"),
+        _ => {
+            eprintln!("Error: Invalid input/output scale combination");
+            std::process::exit(1);
+        },
     };
 
     println!(
