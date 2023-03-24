@@ -20,8 +20,8 @@ fn main() {
     }
 
     let temperature: f64 = args[1].parse().expect("Invalid temperature argument");
-    let input_scale = &args[2];
-    let output_scale = &args[3];
+    let input_scale = &args[2].to_lowercase();
+    let output_scale = &args[3].to_lowercase();
 
     let converted_temperature = match (input_scale.as_str(), output_scale.as_str()) {
         ("c", "f") => celsius_to_fahrenheit(temperature),
@@ -36,9 +36,9 @@ fn main() {
     println!(
         "{} {} = {} {}",
         temperature,
-        input_scale,
+        input_scale.to_uppercase(),
         two_decimal(converted_temperature),
-        output_scale
+        output_scale.to_uppercase()
     );
 }
 
