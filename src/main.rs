@@ -67,14 +67,7 @@ fn kelvin_to_fahrenheit(kelvin: f64) -> f64 {
 }
 
 fn two_decimal(value: f64) -> String {
-    let formatted = format!("{:.2}", value);
-    if formatted.ends_with(".00") {
-        formatted[..formatted.len() - 3].to_string()
-    } else {
-        let mut trimmed = formatted.trim_end_matches('0').to_string();
-        if trimmed.ends_with('.') {
-            trimmed.pop();
-        }
-        trimmed
-    }
+    format!("{:.2}", value).trim_end_matches('0').trim_end_matches('.').to_string()
 }
+
+
